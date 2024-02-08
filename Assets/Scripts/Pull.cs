@@ -1,14 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.XR.CoreUtils;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
-public class BowPull : XRBaseInteractable
-{
+public class Pull : XRBaseInteractable {
     public Transform stringPullPoint;
+
     public Transform startPoint;
     public Transform endPoint;
+
     private XRBaseInteractor interactor;
 
     protected override void OnSelectEntered(SelectEnterEventArgs args) {
@@ -24,12 +24,13 @@ public class BowPull : XRBaseInteractable
         stringPullPoint.position = startPoint.position;
     }
 
-    public override void ProcessInteractable(XRInteractionUpdateOrder.UpdatePhase updatePhase)
-    {
+    public override void ProcessInteractable(XRInteractionUpdateOrder.UpdatePhase updatePhase) {
         base.ProcessInteractable(updatePhase);
-        if (updatePhase == XRInteractionUpdateOrder.UpdatePhase.Dynamic && interactor != null) {
-            float pullAmount = CalculatePullAmount();
-            stringPullPoint.position = interactor.transform.position;
+        if(interactor != null) {
+            if(updatePhase == XRInteractionUpdateOrder.UpdatePhase.Dynamic) {
+                float pullAmount = CalculatePullAmount();
+                stringPullPoint.position = interactor.transform.position;
+            }
         }
     }
 
@@ -39,13 +40,14 @@ public class BowPull : XRBaseInteractable
         
     }
 
-    private float CalculatePullAmount()
-    {
-        Vector3 b = startPoint.position;
-        Vector3 a = endPoint.position;
-        Vector3 c = stringPullPoint.position;
-
-        return 0f;
-        //return ((a - b).Multiply(c- b));
+    private float CalculatePullAmount() {
+        return 0;
     }
+
+
+    void OnDrawGizmos() {
+        Gizmos.DrawLine(startPoint.position, endPoint.position);
+    }
+
+
 }

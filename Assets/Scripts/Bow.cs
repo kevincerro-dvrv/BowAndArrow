@@ -3,6 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
-public class Bow : XRGrabInteractable
-{
+public class Bow : XRGrabInteractable {
+
 }
