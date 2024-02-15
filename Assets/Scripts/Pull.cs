@@ -11,6 +11,8 @@ public class Pull : XRBaseInteractable {
 
     private XRBaseInteractor interactor;
 
+    private Vector3 startToEndVector;
+
     protected override void OnSelectEntered(SelectEnterEventArgs args) {
         base.OnSelectEntered(args);
         Debug.Log("[Pull] OnSelectEntered");
@@ -29,25 +31,22 @@ public class Pull : XRBaseInteractable {
         if(interactor != null) {
             if(updatePhase == XRInteractionUpdateOrder.UpdatePhase.Dynamic) {
                 float pullAmount = CalculatePullAmount();
-                stringPullPoint.position = interactor.transform.position;
+                stringPullPoint.position = startPoint.position + startToEndVector * pullAmount;
             }
         }
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     private float CalculatePullAmount() {
-        return 0;
-    }
+        startToEndVector = endPoint.position - startPoint.position;
+        float maxDistance = startToEndVector.magnitude;
 
+        Vector3 startToInteractorVector = interactor.transform.position - startPoint.position;
+        float projectedDistance = Vector3.Dot(startToEndVector, startToInteractorVector) / maxDistance;
+
+        return Mathf.Clamp(projectedDistance / maxDistance, 0f, 1f);
+    }
 
     void OnDrawGizmos() {
         Gizmos.DrawLine(startPoint.position, endPoint.position);
     }
-
-
 }
