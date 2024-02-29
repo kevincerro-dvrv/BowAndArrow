@@ -10,11 +10,14 @@ public class Arrow : MonoBehaviour {
     private XRGrabInteractable arrowGrabInteractable;
     private XRSocketInteractor bowStringSocket;
 
+    public delegate void OnStringCapturedDelegate(Transform stringMiddlePoint);
+    public OnStringCapturedDelegate OnStringCaptured;
 
     void Start() {
         bowStringSocket = GetComponent<XRSocketInteractor>();
         arrowGrabInteractable = GetComponent<XRGrabInteractable>(); 
 
+        bowStringSocket.selectEntered.AddListener(StringCaptured);
         bowStringSocket.enabled = false;
 
         arrowGrabInteractable.selectExited.AddListener(ReleaseArrow);
@@ -22,6 +25,7 @@ public class Arrow : MonoBehaviour {
 
         GameObject xrIMContainer = GameObject.Find("XR Interaction Manager");
         interactionManager = xrIMContainer.GetComponent<XRInteractionManager>();
+
     }
 
     void LateUpdate() {
@@ -44,10 +48,21 @@ public class Arrow : MonoBehaviour {
         if(bowStringSocket.interactablesSelected.Count != 0) {
             Debug.Log("[Arrow] ReleaseArrow Socket ten agarrada corda");
             interactionManager.CancelInteractableSelection(bowStringSocket.interactablesSelected[0]);
+            TrowArrow();
         }
 
         bowStringSocket.enabled = false;
 
     }
-   
+
+    public void StringCaptured(SelectEnterEventArgs args) {
+        if (OnStringCaptured != null) {
+            Pull stringPull = args.interactable.GetComponent<Pull>();
+            OnStringCaptured(stringPull.stringPullPoint);
+        }
+    }
+
+    private void TrowArrow() {
+        GetComponent<Rigidbody>().AddForce(Vector3.forward * 100, ForceMode.Impulse);
+    }
 }
