@@ -61,6 +61,7 @@ public class Arrow : MonoBehaviour {
 
     public void GrabArrow(SelectEnterEventArgs args) {
         bowStringSocket.enabled = true;
+        UnfreezeArrow();
     }
 
     public void ReleaseArrow(SelectExitEventArgs args) {
@@ -78,33 +79,39 @@ public class Arrow : MonoBehaviour {
         }
 
         bowStringSocket.enabled = false;
-
     }
 
     void Update() {
         if(flying) {
-            if(previousPosition != null) {
-                if(Physics.Linecast(previousPosition, transform.position, out RaycastHit hit, hittableLayers, QueryTriggerInteraction.Ignore)) {
-                    FreezeArrow();
-                    flying = false;
-                }
-
+            if(Physics.Linecast(previousPosition, arrowTip.position, out RaycastHit hit, hittableLayers, QueryTriggerInteraction.Ignore)) {
+                FreezeArrow();
+                flying = false;
+                hit.collider.gameObject.GetComponent<IArrowHittable>()?.Hit(this, hit);
             }
 
-            previousPosition = transform.position;
+            previousPosition = arrowTip.position;
         }
     }
 
+    void FixedUpdate() {
+        if (flying && rb.velocity.z > 0.5f) {
+            transform.forward = rb.velocity;
+        }
+    }
 
     private void FreezeArrow() {
         rb.isKinematic = true;
+    }
 
-
+    private void UnfreezeArrow() {
+        rb.isKinematic = false;
     }
 
     private void TrowArrow(float force) {
+        rb.isKinematic = false;
         GetComponent<Rigidbody>().AddForce(transform.forward * force, ForceMode.Impulse);
         flying = true;
+        previousPosition = arrowTip.position;
     }
    
 }
