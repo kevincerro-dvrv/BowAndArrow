@@ -19,8 +19,12 @@ public class Pull : XRBaseInteractable {
 
     protected override void OnSelectEntered(SelectEnterEventArgs args) {
         base.OnSelectEntered(args);
-        Debug.Log("[Pull] OnSelectEntered");
+        Debug.Log("[Pull] OnSelectEntered interactor:  " + ((MonoBehaviour)args.interactorObject).gameObject.name);
+
         interactor = (XRBaseInteractor)args.interactorObject;
+        if(interactor.gameObject.CompareTag("Arrow")) {
+            interactor = interactor.GetComponent<Arrow>()?.GetSelectingInteractor();
+        }
     }
 
     protected override void OnSelectExited(SelectExitEventArgs args) {
@@ -36,7 +40,7 @@ public class Pull : XRBaseInteractable {
             if(updatePhase == XRInteractionUpdateOrder.UpdatePhase.Dynamic) {
                 pullAmount = CalculatePullAmount();
                 stringPullPoint.position = startPoint.position + startToEndVector * pullAmount ;
-                Debug.Log("[Pull] ProcessInteractable pullAmount " + pullAmount);
+                //Debug.Log("[Pull] ProcessInteractable pullAmount " + pullAmount);
             }
         }
     }

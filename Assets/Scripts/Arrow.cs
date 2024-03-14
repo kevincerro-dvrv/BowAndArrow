@@ -16,12 +16,15 @@ public class Arrow : MonoBehaviour {
     private XRInteractionManager interactionManager;
     private XRGrabInteractable arrowGrabInteractable;
     private XRSocketInteractor bowStringSocket;
+    private XRBaseInteractor selectingInteractor;
     private Rigidbody rb;
 
     private float maxForce = 20f;
 
     public delegate void OnStringCapturedDelegate(Transform stringMiddlePoint);
     public OnStringCapturedDelegate OnStringCaptured;
+
+    public bool autoDisable = false;  
 
 
     void Start() {
@@ -40,6 +43,33 @@ public class Arrow : MonoBehaviour {
         interactionManager = xrIMContainer.GetComponent<XRInteractionManager>();
 
         flying = false;
+    }
+
+    void Update() {
+        if(autoDisable) {
+            autoDisable = false;
+            gameObject.SetActive(false);
+        }
+
+        if(flying) {
+            //if(previousPosition != null) {
+                if(Physics.Linecast(previousPosition, arrowTip.position, out RaycastHit hit, hittableLayers, QueryTriggerInteraction.Ignore)) {
+                    FreezeArrow();
+                    flying = false;
+                    Debug.Log("[Arrow] Update colisión con " + hit.collider.gameObject.name);
+                    hit.collider.gameObject.GetComponent<IArrowHittable>()?.Hit(this, hit);
+                }
+
+            //}
+
+            previousPosition = arrowTip.position;
+        }
+    }
+
+    void FixedUpdate() {
+        if(flying && rb.velocity.z > 0.5f) {
+            transform.forward = rb.velocity;
+        }
     }
 
     void LateUpdate() {
@@ -61,8 +91,10 @@ public class Arrow : MonoBehaviour {
 
     public void GrabArrow(SelectEnterEventArgs args) {
         bowStringSocket.enabled = true;
-        UnfreezeArrow();
+        selectingInteractor = args.interactor;
     }
+
+    
 
     public void ReleaseArrow(SelectExitEventArgs args) {
         //Debug.Log("[Arrow] ReleaseArrow");
@@ -79,32 +111,17 @@ public class Arrow : MonoBehaviour {
         }
 
         bowStringSocket.enabled = false;
+        rb.isKinematic = false;
+        selectingInteractor = null;
     }
 
-    void Update() {
-        if(flying) {
-            if(Physics.Linecast(previousPosition, arrowTip.position, out RaycastHit hit, hittableLayers, QueryTriggerInteraction.Ignore)) {
-                FreezeArrow();
-                flying = false;
-                hit.collider.gameObject.GetComponent<IArrowHittable>()?.Hit(this, hit);
-            }
-
-            previousPosition = arrowTip.position;
-        }
+    public XRBaseInteractor GetSelectingInteractor() {
+        return selectingInteractor;
     }
 
-    void FixedUpdate() {
-        if (flying && rb.velocity.z > 0.5f) {
-            transform.forward = rb.velocity;
-        }
-    }
 
     private void FreezeArrow() {
         rb.isKinematic = true;
-    }
-
-    private void UnfreezeArrow() {
-        rb.isKinematic = false;
     }
 
     private void TrowArrow(float force) {
