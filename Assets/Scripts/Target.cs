@@ -15,6 +15,10 @@ public class Target : MonoBehaviour, IArrowHittable {
     public void Hit(Arrow arrow, RaycastHit hit) {
         //Debug.Log("[Target] " + hit.point);
 
+        if(GameManager.instance.RoundEnded) {
+            return;
+        }
+
         Vector3 impactPoint = transform.InverseTransformPoint(hit.point);
         //Poñemos a coordenada x a 0 para que o punto de impacto quede no plano central da diana
         impactPoint.x = 0;

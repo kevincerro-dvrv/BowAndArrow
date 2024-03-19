@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour {
     public static GameManager instance;
+    public UIBoard uIBoard;
 
     private int playerScore;
     private int shotArrowsCount;
@@ -27,15 +28,20 @@ public class GameManager : MonoBehaviour {
     public void Score(int points) {
         playerScore += points;
         Debug.Log($"[GameManager] Score puntos frecha {points} puntuación total {playerScore}");
+        uIBoard.SetTotalScore(playerScore);
+        uIBoard.SetLastScore(points);
     }
 
     public void RegisterArrowShot() {
-        shotArrowsCount++;
+        shotArrowsCount = Mathf.Clamp(shotArrowsCount++, 0, 10);
+        uIBoard.SetArrowCount(shotArrowsCount);
     }
 
-    private void InitializeGame() {
+    public void InitializeGame() {
         playerScore = 0;
         shotArrowsCount = 0;
-
+        uIBoard.SetTotalScore(0);
+        uIBoard.SetLastScore(0);
+        uIBoard.SetArrowCount(0);
     }
 }
