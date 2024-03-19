@@ -2,32 +2,40 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
-{
+public class GameManager : MonoBehaviour {
     public static GameManager instance;
 
-    private int score = 0;
+    private int playerScore;
+    private int shotArrowsCount;
 
-    void Awake()
-    {
+    public bool RoundEnded { get { return shotArrowsCount >= 10; }}
+
+    void Awake() {
         instance = this;
     }
 
     // Start is called before the first frame update
-    void Start()
-    {
-        
+    void Start() {
+        InitializeGame();
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    void Update() {
         
     }
 
-    public void AddScore(int points)
-    {
-        score += points;
-        Debug.Log("[Score] " + score);
+    public void Score(int points) {
+        playerScore += points;
+        Debug.Log($"[GameManager] Score puntos frecha {points} puntuación total {playerScore}");
+    }
+
+    public void RegisterArrowShot() {
+        shotArrowsCount++;
+    }
+
+    private void InitializeGame() {
+        playerScore = 0;
+        shotArrowsCount = 0;
+
     }
 }

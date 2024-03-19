@@ -129,6 +129,9 @@ public class Arrow : MonoBehaviour {
         GetComponent<Rigidbody>().AddForce(transform.forward * force, ForceMode.Impulse);
         flying = true;
         previousPosition = arrowTip.position;
+
+        //Registramos el lanzamiento de la flecha para que el GameManager lleve cuenta del avance de la partida
+        GameManager.instance.RegisterArrowShot();
     }
    
 }

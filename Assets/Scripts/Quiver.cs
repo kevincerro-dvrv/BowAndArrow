@@ -23,6 +23,10 @@ public class Quiver : XRBaseInteractable {
     protected override void OnSelectEntered(SelectEnterEventArgs args) {
         Debug.Log("Quiver.OnSelectEntered");
 
+        if(GameManager.instance.RoundEnded) {
+            return;
+        }
+
         base.OnSelectEntered(args);
 
         //Activar a spareArrow
