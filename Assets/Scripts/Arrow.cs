@@ -19,7 +19,7 @@ public class Arrow : MonoBehaviour {
     private XRBaseInteractor selectingInteractor;
     private Rigidbody rb;
 
-    private float maxForce = 20f;
+    private float maxForce = 40f;
 
     public delegate void OnStringCapturedDelegate(Transform stringMiddlePoint);
     public OnStringCapturedDelegate OnStringCaptured;
@@ -132,6 +132,9 @@ public class Arrow : MonoBehaviour {
 
         //Registramos el lanzamiento de la flecha para que el GameManager lleve cuenta del avance de la partida
         GameManager.instance.RegisterArrowShot();
+
+        // Haptic feedback
+        GetSelectingInteractor().GetComponent<HapticController>().TriggerHaptic();
     }
    
 }

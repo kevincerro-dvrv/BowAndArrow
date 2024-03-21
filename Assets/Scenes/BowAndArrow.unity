@@ -136,6 +136,7 @@ GameObject:
   - component: {fileID: 52988334}
   - component: {fileID: 52988336}
   - component: {fileID: 52988333}
+  - component: {fileID: 52988337}
   m_Layer: 0
   m_Name: RightHandDirectInteractor
   m_TagString: Untagged
@@ -534,6 +535,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   marcador: {fileID: 1877743210}
+--- !u!114 &52988337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 52988331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97035442dfcf5bf4a9f2c051891840e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &84048524
 GameObject:
   m_ObjectHideFlags: 0
@@ -1710,6 +1723,7 @@ MonoBehaviour:
   m_AutoDeselect: 0
   m_TimeToAutoDeselect: 3
   m_EnableUIInteraction: 1
+  m_BlockUIOnInteractableSelection: 1
   m_AllowAnchorControl: 1
   m_UseForceGrab: 1
   m_RotateSpeed: 180
@@ -3025,6 +3039,18 @@ MonoBehaviour:
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
+--- !u!114 &1462460130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1462460124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c151074dcf1e814e913121ec0316f66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1465098417
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3110,6 +3136,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5884175300938282713, guid: 60e7d33a2c791694bb65d3d12843d89b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1462460129}
+    - targetCorrespondingSourceObject: {fileID: 5884175300938282713, guid: 60e7d33a2c791694bb65d3d12843d89b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1462460130}
   m_SourcePrefab: {fileID: 100100000, guid: 60e7d33a2c791694bb65d3d12843d89b, type: 3}
 --- !u!1001 &1533634896
 PrefabInstance:
@@ -3708,6 +3737,7 @@ GameObject:
   - component: {fileID: 1820300430}
   - component: {fileID: 1820300429}
   - component: {fileID: 1820300428}
+  - component: {fileID: 1820300431}
   m_Layer: 0
   m_Name: LeftHandDirectInteractor
   m_TagString: Untagged
@@ -4092,6 +4122,18 @@ MonoBehaviour:
       m_Flags: 0
     m_Reference: {fileID: 0}
   m_ButtonPressPoint: 0.5
+--- !u!114 &1820300431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1820300426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97035442dfcf5bf4a9f2c051891840e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1877743206
 GameObject:
   m_ObjectHideFlags: 0
@@ -4575,6 +4617,7 @@ MonoBehaviour:
   m_AutoDeselect: 0
   m_TimeToAutoDeselect: 3
   m_EnableUIInteraction: 1
+  m_BlockUIOnInteractableSelection: 1
   m_AllowAnchorControl: 1
   m_UseForceGrab: 1
   m_RotateSpeed: 180
