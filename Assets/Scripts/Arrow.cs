@@ -19,7 +19,7 @@ public class Arrow : MonoBehaviour {
     private XRBaseInteractor selectingInteractor;
     private Rigidbody rb;
 
-    private float maxForce = 20f;
+    private float maxForce = 40f;
 
     public delegate void OnStringCapturedDelegate(Transform stringMiddlePoint);
     public OnStringCapturedDelegate OnStringCaptured;
