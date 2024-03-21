@@ -254,19 +254,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3723427132866003944}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 173275996094361139}
-        m_TargetAssemblyTypeName: UIBoard, Assembly-CSharp
-        m_MethodName: OnRestartClicked
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &2009037944856506099
 GameObject:
   m_ObjectHideFlags: 0
@@ -545,7 +533,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3022390278787949749}
   - component: {fileID: 7997131364248604082}
-  - component: {fileID: 173275996094361139}
   m_Layer: 5
   m_Name: MarcadorPrefab
   m_TagString: Untagged
@@ -596,21 +583,6 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!114 &173275996094361139
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2676861072431817062}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b039ef2a5c3e5494f8fc9efa0f15a3da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  arrowCount: {fileID: 3578220914803087966}
-  lastScore: {fileID: 4380695948353227086}
-  totalScore: {fileID: 1342441777720207249}
 --- !u!1 &4158105169140449056
 GameObject:
   m_ObjectHideFlags: 0
@@ -948,19 +920,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8758249919627563017}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 173275996094361139}
-        m_TargetAssemblyTypeName: UIBoard, Assembly-CSharp
-        m_MethodName: OnRecoverBowClicked
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &7243064522958345616
 GameObject:
   m_ObjectHideFlags: 0

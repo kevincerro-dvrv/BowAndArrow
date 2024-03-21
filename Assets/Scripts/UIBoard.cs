@@ -1,43 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
+using TMPro;
 
-public class UIBoard : MonoBehaviour
-{
-    public TextMeshProUGUI arrowCount;
-    public TextMeshProUGUI lastScore;
-    public TextMeshProUGUI totalScore;
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+public class UIBoard : MonoBehaviour {
+    public TextMeshProUGUI arrowCountText;
+    public TextMeshProUGUI lastScoreText;
+    public TextMeshProUGUI totalScoreText;
 
     public void SetArrowCount(int arrowCount) {
-        this.arrowCount.text = arrowCount.ToString();
+        arrowCountText.text = arrowCount.ToString();
     }
 
-    public void SetLastScore(int lastScore) {
-        this.lastScore.text = lastScore.ToString();
+    public void SetLastScore(int score) {
+        lastScoreText.text = score.ToString();
     }
 
-    public void SetTotalScore(int totalScore) {
-        this.totalScore.text = totalScore.ToString();
+    public void SetTotalScore(int score) {
+        totalScoreText.text = score.ToString();
     }
 
-    public void OnRestartClicked() {
+    public void ButtonRestartOnClick() {
+        Debug.Log("[IUBoard] ButtonRestartOnClick");
         GameManager.instance.InitializeGame();
     }
 
-    public void OnRecoverBowClicked() {
-
+    public void ButtonRetrieveBowOnClick() {
+        Debug.Log("[IUBoard] ButtonRetrieveBowOnClick");
     }
+
 }
