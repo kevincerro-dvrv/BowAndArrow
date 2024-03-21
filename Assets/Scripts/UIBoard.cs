@@ -27,6 +27,7 @@ public class UIBoard : MonoBehaviour {
 
     public void ButtonRetrieveBowOnClick() {
         Debug.Log("[IUBoard] ButtonRetrieveBowOnClick");
+        BowManager.instance.RestorePosition();
     }
 
 }
