@@ -47,11 +47,12 @@ public class Quiver : XRBaseInteractable {
         spareArrow.gameObject.SetActive(true);
         interactionManager.SelectEnter(args.interactorObject, spareArrow);
 
+        // Register last delivered arrow
+        arrows.Add(spareArrow.gameObject);
+
         spareArrow = Instantiate(arrowPrefab, args.interactorObject.transform.position, args.interactorObject.transform.rotation).GetComponent<XRGrabInteractable>();
         //Desactivar a spareArrow
         spareArrow.gameObject.GetComponent<Arrow>().autoDisable = true;
-
-        arrows.Add(spareArrow.gameObject);
     }
 
     void OnTriggerEnter(Collider other) {
