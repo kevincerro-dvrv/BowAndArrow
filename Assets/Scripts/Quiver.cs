@@ -37,6 +37,8 @@ public class Quiver : XRBaseInteractable {
         //Desactivar a spareArrow
         spareArrow.gameObject.GetComponent<Arrow>().autoDisable = true;
 
+        // Haptic feedback
+        args.interactorObject.transform.GetComponent<HapticController>().TriggerHaptic();
     }
 
 }
