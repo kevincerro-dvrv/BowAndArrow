@@ -23,6 +23,7 @@ public class UIBoard : MonoBehaviour {
     public void ButtonRestartOnClick() {
         Debug.Log("[IUBoard] ButtonRestartOnClick");
         GameManager.instance.InitializeGame();
+        Quiver.instance.DestroyArrows();
     }
 
     public void ButtonRetrieveBowOnClick() {
