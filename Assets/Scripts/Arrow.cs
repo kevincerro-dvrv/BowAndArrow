@@ -132,6 +132,9 @@ public class Arrow : MonoBehaviour {
 
         //Registramos el lanzamiento de la flecha para que el GameManager lleve cuenta del avance de la partida
         GameManager.instance.RegisterArrowShot();
+
+        // Haptic feedback
+        GetSelectingInteractor().GetComponent<HapticController>().TriggerHaptic();
     }
    
 }
